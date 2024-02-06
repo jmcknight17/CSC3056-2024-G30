@@ -49,38 +49,43 @@ public class AccountTest {
 	public static void testSetters() 
 	{
 	    Account testAccount = new Account("12345", "mike", "Savings", new Date(2024, 2, 5));
+	    
+		String test_account_number = "54321";
+		String test_username_of_account_holder = "john";
+		String test_account_type = "Checking";
+		Date test_account_opening_date = new Date(2024, 2, 6);
 
-	    testAccount.setAccount_number("54321");
-	    testAccount.setUsername_of_account_holder("john");
-	    testAccount.setAccount_type("Checking");
-	    testAccount.setAccount_opening_date(new Date(2024, 2, 6));
+	    testAccount.setAccount_number(test_account_number);
+	    testAccount.setUsername_of_account_holder(test_username_of_account_holder);
+	    testAccount.setAccount_type(test_account_type);
+	    testAccount.setAccount_opening_date(test_account_opening_date);
 		
 	    System.out.println("Starting the assertions of the test method: testSetters");
 	    
-	    if (testAccount.getAccount_number() == "54321")
+	    if (testAccount.getAccount_number() == test_account_number)
 	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC1 passed" + TestUtils.TEXT_COLOR_RESET);
 	    else
 	        System.out.println(TestUtils.TEXT_COLOR_RED + "TestSetters-TC1 failed: account number did not match" + TestUtils.TEXT_COLOR_RESET);
 
-	    if (testAccount.getUsername_of_account_holder() == "john")
+	    if (testAccount.getUsername_of_account_holder() == test_username_of_account_holder)
 	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC2 passed" + TestUtils.TEXT_COLOR_RESET);
 	    else
 	        System.out.println(TestUtils.TEXT_COLOR_RED + "TestSetters-TC2 failed: username of account holder did not match" + TestUtils.TEXT_COLOR_RESET);
 	    
-	    if (testAccount.getAccount_type() == "Chcking")
+	    if (testAccount.getAccount_type() == test_account_type)
 	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC3 passed" + TestUtils.TEXT_COLOR_RESET);
 	    else
 	        System.out.println(TestUtils.TEXT_COLOR_RED + "TestSetters-TC3 failed: account type did not match" + TestUtils.TEXT_COLOR_RESET);
 	    
-	    if (testAccount.getAccount_opening_date().equals(new Date(2024, 2, 6)))
+	    if (testAccount.getAccount_opening_date() == test_account_opening_date)
 	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC4 passed" + TestUtils.TEXT_COLOR_RESET);
 	    else
 	        System.out.println(TestUtils.TEXT_COLOR_RED + "TestSetters-TC4 failed: opening date did not match" + TestUtils.TEXT_COLOR_RESET);
 	    
-		assert testAccount.getAccount_number() == "54321"; 
-		assert testAccount.getUsername_of_account_holder() == "john";
-		assert testAccount.getAccount_type() == "Checking"; 
-		assert testAccount.getAccount_opening_date() == new Date(2024, 2, 6);
+		assert testAccount.getAccount_number() == test_account_number; 
+		assert testAccount.getUsername_of_account_holder() == test_username_of_account_holder;
+		assert testAccount.getAccount_type() == test_account_type; 
+		assert testAccount.getAccount_opening_date() == test_account_opening_date;
 	    
 		System.out.println("All Java assertions of the test method: testSetters passed (none failed).");
 	}
