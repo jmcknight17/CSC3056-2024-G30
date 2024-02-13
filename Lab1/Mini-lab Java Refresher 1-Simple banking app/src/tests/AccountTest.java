@@ -19,22 +19,22 @@ public class AccountTest {
 		System.out.println("Starting the assertions of the test method: testConstructor");
 		
 		if (testAccount.getAccount_number() == test_account_number)
-			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestConstructor-TC1 passed" + TestUtils.TEXT_COLOR_RESET);
+			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestConstructor-TC1 getAccountNumber passed" + TestUtils.TEXT_COLOR_RESET);
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "TestConstructor-TC1 failed: account number did not match" + TestUtils.TEXT_COLOR_RESET);
 
 		if (testAccount.getUsername_of_account_holder() == test_username_of_account_holder)
-			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestConstructor-TC2 passed" + TestUtils.TEXT_COLOR_RESET);
+			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestConstructor-TC2 getUsernameOfAccountHolder passed" + TestUtils.TEXT_COLOR_RESET);
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "TestConstructor-TC2 failed: username of account holder did not match" + TestUtils.TEXT_COLOR_RESET);
 		
 		if (testAccount.getAccount_type() == test_account_type)
-			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestConstructor-TC3 passed" + TestUtils.TEXT_COLOR_RESET);
+			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestConstructor-TC3 getAccountType passed" + TestUtils.TEXT_COLOR_RESET);
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "TestConstructor-TC3 failed: first name did not match" + TestUtils.TEXT_COLOR_RESET);
 		
 		if (testAccount.getAccount_opening_date() == test_account_opening_date)
-			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestConstructor-TC4 passed" + TestUtils.TEXT_COLOR_RESET);
+			System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestConstructor-TC4 getAccountOpeningDate passed" + TestUtils.TEXT_COLOR_RESET);
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "TestConstructor-TC4 failed: last name did not match" + TestUtils.TEXT_COLOR_RESET);
 		
@@ -63,22 +63,22 @@ public class AccountTest {
 	    System.out.println("Starting the assertions of the test method: testSetters");
 	    
 	    if (testAccount.getAccount_number() == test_account_number)
-	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC1 passed" + TestUtils.TEXT_COLOR_RESET);
+	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC1 setAccountNumber passed" + TestUtils.TEXT_COLOR_RESET);
 	    else
 	        System.out.println(TestUtils.TEXT_COLOR_RED + "TestSetters-TC1 failed: account number did not match" + TestUtils.TEXT_COLOR_RESET);
 
 	    if (testAccount.getUsername_of_account_holder() == test_username_of_account_holder)
-	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC2 passed" + TestUtils.TEXT_COLOR_RESET);
+	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC2 setUsernameOfAccountHolder passed" + TestUtils.TEXT_COLOR_RESET);
 	    else
 	        System.out.println(TestUtils.TEXT_COLOR_RED + "TestSetters-TC2 failed: username of account holder did not match" + TestUtils.TEXT_COLOR_RESET);
 	    
 	    if (testAccount.getAccount_type() == test_account_type)
-	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC3 passed" + TestUtils.TEXT_COLOR_RESET);
+	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC3 setAccountType passed" + TestUtils.TEXT_COLOR_RESET);
 	    else
 	        System.out.println(TestUtils.TEXT_COLOR_RED + "TestSetters-TC3 failed: account type did not match" + TestUtils.TEXT_COLOR_RESET);
 	    
 	    if (testAccount.getAccount_opening_date() == test_account_opening_date)
-	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC4 passed" + TestUtils.TEXT_COLOR_RESET);
+	        System.out.println(TestUtils.TEXT_COLOR_GREEN + "TestSetters-TC4 setAccountOpeningDate passed" + TestUtils.TEXT_COLOR_RESET);
 	    else
 	        System.out.println(TestUtils.TEXT_COLOR_RED + "TestSetters-TC4 failed: opening date did not match" + TestUtils.TEXT_COLOR_RESET);
 	    
