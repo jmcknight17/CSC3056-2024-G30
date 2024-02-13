@@ -11,6 +11,10 @@ public class Transaction {
 		this.transaction_amount = transaction_amount;
 		this.transaction_date = transaction_date;
 	}
+	
+	public String toString() {
+		return account_number + ", " + transaction_amount + ", " + transaction_date+ ", ";
+	}
 
 	String account_number;
 	double transaction_amount;

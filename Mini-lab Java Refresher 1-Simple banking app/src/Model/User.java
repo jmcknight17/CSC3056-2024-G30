@@ -12,6 +12,10 @@ public class User {
 		this.mobile_number = mobile_number;
 	}
 	
+	public String toString() {
+		return username + ", " + password + ", " + first_name + ", " + last_name + ", " + mobile_number;
+	}
+	
 	private String username;
 	private String password;
 	private String first_name;
