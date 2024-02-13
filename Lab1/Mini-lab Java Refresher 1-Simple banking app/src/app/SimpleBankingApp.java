@@ -27,22 +27,14 @@ public class SimpleBankingApp {
 	
 	public static void printAllUsers() {
 		System.out.println("There are: " + users.size() + " users in the system.");	
-		
 		System.out.println(String.format("%-25s| %-15s| %-15s| %-15s| %-15s", 
 				"username", "password", "first_name", "last_name", "mobile_number"));
-		
 		System.out.println("-------------------------------------------------------------------------------------------");
-		
-		for  (int i = 0; i < users.size(); i++) 	
-			System.out.println(String.format("%-25s| %-15s| %-15s| %-15s| %-15s", 
-					users.get(i).getUsername(), 
-					users.get(i).getPassword(), 
-					users.get(i).getFirst_name(), 
-					users.get(i).getLast_name(), 
-					users.get(i).getMobile_number()));
-		
+		for  (int i = 0; i < users.size(); i++) 
+            System.out.println(users.get(i).toString());	
 		System.out.println();
 	}
+
 	
 	public static void loadAccountData()  {
 		Account anAccount;
@@ -67,24 +59,18 @@ public class SimpleBankingApp {
 	
 	public static void printAllAccounts() {
 		System.out.println("There are: " + accounts.size() + " accounts in the system.");
+		//System.out.println("Account_number | username_of_account_holder | account_type | account_opening_date");
 
 		System.out.println(String.format("%-10s| %-30s| %-10s| %-15s| %-15s", 
 				"Account #", "username_of_account_holder", "type", "opening_date", "Balance"));
-		
 		System.out.println("--------------------------------------------------------------------------------");
 		
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
-		
 		for  (int i = 0; i < accounts.size(); i++) 
-			System.out.println(String.format("%-10s| %-30s| %-10s| %-15s| %-15s", 
-					accounts.get(i).getAccount_number(), 
-					accounts.get(i).getUsername_of_account_holder(), 
-					accounts.get(i).getAccount_type(), 
-	                dateFormat.format(accounts.get(i).getAccount_opening_date()), 
-					getBalance(accounts.get(i).getAccount_number())));
+            System.out.println(accounts.get(i).toString() + "| $" + getBalance(accounts.get(i).getAccount_number()));
 		
 		System.out.println();
 	}
+
 	
 	public static void addTransaction(String account_number, double amount) { 
 		Transaction aTransaction =  new Transaction(account_number, amount, Calendar.getInstance().getTime());
