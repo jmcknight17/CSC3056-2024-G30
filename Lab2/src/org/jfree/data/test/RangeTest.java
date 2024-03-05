@@ -1,19 +1,74 @@
 package org.jfree.data.test;
 
 import static org.junit.Assert.*;
+import java.security.InvalidParameterException;
 import junit.framework.TestCase; 
 import org.jfree.data.Range;
 import org.junit.Before;
 import org.junit.Test;
 
 public class RangeTest {
-
+	
 	private Range rangeObjectUnderTest;
 	private Range r1;
 	private Range r2;
 	private Range r3;
 	private Range r4;
 	private Range r5;
+	
+	@Before
+	public void setUp() throws Exception {
+		rangeObjectUnderTest = new Range(-1,1);
+		
+		r1 = new Range(2,2);
+		r2 = new Range(4,9);
+		r3 = new Range(-99,-99);
+		r4 = new Range(-11,-4);
+		r5 = new Range(-5,3);
+	}
+	
+	@Test
+	public void testIntersects() {
+
+	}
+	
+	@Test(expected = InvalidParameterException.class)
+	public void testShift() {
+
+	}
+	
+	@Test
+	public void testCombine() {
+
+	}
+
+	@Test(expected = InvalidParameterException.class)
+	public void testExpand() {
+
+	}
+	
+	@Test
+	public void testExpandToInclude() {
+
+	}
+	
+	public void tearDown() throws Exception{	
+		rangeObjectUnderTest = null; 
+		r1 = null;
+		r2 = null; 
+		r3 = null;
+		r4 = null;
+		r5 = null;
+	}
+	
+	/*
+	private Range rangeObjectUnderTest;
+	private Range r1;
+	private Range r2;
+	private Range r3;
+	private Range r4;
+	private Range r5;
+	
 	@Before
 	public void setUp() throws Exception {
 		rangeObjectUnderTest = new Range(-1,1);
@@ -64,5 +119,5 @@ public class RangeTest {
 		r4 = null;
 		r5 = null;
 	}
-
+	*/
 }
