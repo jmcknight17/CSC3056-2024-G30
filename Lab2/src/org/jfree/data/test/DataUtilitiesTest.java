@@ -23,35 +23,201 @@ public class DataUtilitiesTest extends DataUtilities {
 		testValues.addValue(4 , 1, 0);
 	}
 	
+	//Start of CalculateColumnTotal Test Cases
+	@Test public void testCalculateColumnTotalNegativeIndex() {
+		
+	}
+	
+	@Test public void testCalculateColumnTotalInvalidHigherIndex() {
+		
+	}
+	
+	@Test public void testCalculateColumnTotalValidLowerIndex() {
+		
+	}
+	
+	@Test public void testCalculateColumnTotalValidUpperIndex() {
+		
+	}
+	
 	@Test(expected = IllegalArgumentException.class)
-	public void testCalculateColumnTotal() {
+	public void testCalculateColumnTotalNullWithNegativeIndex() {
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculateColumnTotalNullWithValidLowerIndex() {
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculateColumnTotalNullWithValidUpperIndex() {
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculateColumnTotalNullWithInValidHigherIndex() {
+		
+	}
+	//End of CalculateColumnTotal Test Cases
+	
+	
+	
+	
+	
+	//Start of CalculateRowTotal Test Cases
+	@Test public void testCalculateRowTotalNegativeIndex() {
+
+	}
+	
+	@Test public void testCalculateRowTotalInvalidHigherIndex() {
+		
+	}
+	
+	@Test public void testCalculateRowTotalValidLowerIndex() {
+		
+	}
+	
+	@Test public void testCalculateRowTotalValidUpperIndex() {
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculateRowTotalNullWithNegativeIndex() {
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculateRowTotalNullWithValidLowerIndex() {
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculateRowTotalNullWithValidUpperIndex() {
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculateRowTotalNullWithInvalidHigherIndex() {
+		
+	}
+	//End of CalculateRowTotal Test Cases
+	
+	
+	
+	
+	
+	//Start of CreateNumberArray Test Cases
+	@Test public void testCreateNumberArrayValidData() {
 
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testCalculateRowTotal() {
+	public void testCreateNumberArrayNullData() {
 
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testCreateNumberArray() {
+	public void testCreateNumberArrayNullEntryData() {
+
+	}
+	
+	@Test public void testCreateNumberArrayEmptyData() {
+
+	}
+	
+	@Test public void testCreateNumberArraySingleEntryData() {
+
+	}
+	
+	@Test public void testCreateNumberArraySpecialDoubleData() {
+
+	}
+	//End of CreateNumberArray Test Cases
+	
+	
+	
+	
+	
+	//Start of CreateNumberArray2D Test Cases
+	@Test public void testCreateNumberArray2dValidData() {
+
+	}
+	
+	@Test public void testCreateNumberArray2dSpecialDoubleData() {
+
+	}
+	
+	@Test public void testCreateNumberArray2dDifferingRowData() {
 
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testCreateNumberArray2D() {
+	public void testCreateNumberArray2dNullData() {
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreateNumberArray2dNullEntryData() {
+
+	}
+	
+	@Test public void testCreateNumberArray2dEmptyData() {
+
+	}
+	
+	@Test public void testCreateNumberArray2dSingleArrayData() {
+
+	}
+	
+	@Test public void testCreateNumberArray2dSingleEntryData() {
+
+	}
+	
+	@Test public void testCreateNumberArray2dMaxDoubleData() {
+
+	}
+	//End of CreateNumberArray2D Test Cases
+	
+	
+	
+	
+	
+	//Start of GetCummulativePercentages Test Cases
+	@Test public void testGetCumulativePercentagesEmptyData() {
+
+	}
+	
+	@Test public void testGetCumulativePercentagesSinglePositiveData() {
+
+	}
+	
+	@Test public void testGetCumulativePercentagesValidData() {
+
+	}
+	
+	@Test public void testGetCumulativePercentagesContainsZeroData() {
+
+	}
+	
+	@Test public void testGetCumulativePercentagesContainsNegativeData() {
 
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testGetCumulativePercentages() {
+	public void testGetCumulativePercentagesNullData() {
 
 	}
+	//End of GetCummulativePercentages Test Cases
+	
+	
 	
 	@After
 	public void tearDown() throws Exception {
 		values2D = null;
 	}
+	
+	
 	
 	/*
 	private Values2D values2D;
