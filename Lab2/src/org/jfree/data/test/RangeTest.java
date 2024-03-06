@@ -9,7 +9,8 @@ import org.junit.Test;
 
 public class RangeTest {
 	
-	/*private Range rangeObjectUnderTest;
+	private Range rangeObjectUnderTest;
+	/*
 	private Range r1;
 	private Range r2;
 	private Range r3;
@@ -18,8 +19,8 @@ public class RangeTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		/*rangeObjectUnderTest = new Range(-1,1);
 		
+		/*
 		r1 = new Range(2,2);
 		r2 = new Range(4,9);
 		r3 = new Range(-99,-99);
@@ -151,8 +152,77 @@ public class RangeTest {
     	Range result = Range.combine(range1, range2);
     	Range expectedRange = new Range(3.0, 8.0);
     	
-    	assertEquals("Combine: Did not return the expected range of (3, 8)", expectedRange, result.toString());
+    	assertEquals("Combine: Did not return the expected range of (3, 8)", expectedRange, result);
     }
+    
+    @Test public void testCombineOneEmptyRangeWithNonOverlapping() {
+    	Range range1 = new Range(9.0, 9.0);
+    	Range range2 = new Range(3.0, 8.0);
+    	Range result = Range.combine(range1, range2);
+    	Range expectedRange = new Range(3.0, 8.0);
+    	
+    	assertEquals("Combine: Did not return the expected range of (3, 8)", expectedRange, result);
+    }
+    
+    @Test public void testCombineNullWithRange() {
+    	Range range2 = new Range(4.0, 9.0);
+    	Range result = Range.combine(null, range2);
+    	Range expectedRange = new Range(4.0, 9.0);
+    	
+    	assertEquals("Combine: Did not return the expected range of (4, 9)", expectedRange, result);
+    }
+    
+    @Test public void testCombineNonOverlappingWithOneEmptyRange() {
+    	Range range1 = new Range(5.0, 10.0);
+    	Range range2 = new Range(2.0, 2.0);
+    	Range result = Range.combine(range1, range2);
+    	Range expectedRange = new Range(5.0, 10.0);
+    	
+    	assertEquals("Combine: Did not return the expected range of (5, 10)", expectedRange, result);
+    }
+    
+    @Test public void testCombineRangeEithNull() {
+    	Range range1 = new Range(1.0, 10.0);
+    	Range result = Range.combine(range1, null);
+    	Range expectedRange = new Range(1.0, 10.0);
+    	
+    	assertEquals("Combine: Did not return the expected range of (1, 10)", expectedRange, result);
+    }
+  
+    @Test public void testCombineContainingMaxValueWithOverlappingRange() {
+    	Range range1 = new Range(7, Double.MAX_VALUE);
+    	Range range2 = new Range(1.0, 8.0);
+    	Range result = Range.combine(range1, range2);
+    	Range expectedRange = new Range(1, Double.MAX_VALUE);
+    	
+    	assertEquals("Combine: Did not return the expected range of (1, Double.MAX_VALUE)", expectedRange, result);
+    }
+    
+    @Test public void testCombineOverlappingRangeWithRangeContainingMin() {
+    	Range range1 = new Range(1, 12);
+    	Range range2 = new Range(Double.MIN_VALUE, 10);
+    	Range result = Range.combine(range1, range2);
+    	Range expectedRange = new Range(Double.MIN_VALUE,12);
+    	
+    	assertEquals("Combine: Did not return the expected range of (Double.MIN_VALUE, 12)", expectedRange, result);
+    }
+    
+    @Test public void testCombineOverlappingRangeWithRangeContainingMax() {
+    	Range range1 = new Range(1, 4);
+    	Range range2 = new Range(0, Double.MAX_VALUE);
+    	Range result = Range.combine(range1, range2);
+    	Range expectedRange = new Range(0, Double.MAX_VALUE);
+    	
+    	assertEquals("Combine: Did not return the expected range of (0, Double.MAX_VALUE)", expectedRange, result);
+    }
+    
+    @Test public void testCombineTwoNullRanges() {
+    	Range result = Range.combine(null, null);
+    	Range expectedRange = null;
+    	assertEquals("Combine: Did not return the expected range of (0, Double.MAX_VALUE)", expectedRange, result);
+    }
+  //End of combine tests   
+    
     
 	//
 	
