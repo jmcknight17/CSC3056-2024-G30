@@ -10,22 +10,10 @@ import org.junit.Test;
 public class RangeTest {
 	
 	private Range rangeObjectUnderTest;
-	/*
-	private Range r1;
-	private Range r2;
-	private Range r3;
-	private Range r4;
-	private Range r5;*/
-	
+
 	@Before
 	public void setUp() throws Exception {
 		
-		/*
-		r1 = new Range(2,2);
-		r2 = new Range(4,9);
-		r3 = new Range(-99,-99);
-		r4 = new Range(-11,-4);
-		r5 = new Range(-5,3); */
 	}
 	
 	//Start of Intersects tests 
@@ -90,7 +78,7 @@ public class RangeTest {
     
     @Test public void testShiftBaseRangeWithZeroDelta() {
     	Range baseRange = new Range(1.0,3.0);
-    	Range result = baseRange.shift(baseRange, 0);
+    	Range result = Range.shift(baseRange, 0);
     	Range expectedRange = new Range(1.0,3.0);
     	
     	assertEquals("Shift: Did not return the expected output of (1.0, 3.0)", expectedRange, result);
@@ -98,7 +86,7 @@ public class RangeTest {
     
     @Test public void testShiftBaseRangeContainingNegativeWithPositiveDeltaCausingZeroCrossing() {
     	Range baseRange = new Range(-2.0, 4.0);
-    	Range result = baseRange.shift(baseRange, 3.0);
+    	Range result = Range.shift(baseRange, 3.0);
     	Range expectedRange = new Range(0.0,7.0);
     	
     	assertEquals("Shift: Did not return the expected output of (0.0, 7.0)", expectedRange, result);
@@ -111,7 +99,7 @@ public class RangeTest {
     
     @Test public void testShiftBaseRangeContainingTwoNegativeValuesWithNegativeDelta() {
     	Range baseRange = new Range(-7.0, -3.0);
-    	Range result = baseRange.shift(baseRange, -5.0);
+    	Range result = Range.shift(baseRange, -5.0);
     	Range expectedRange = new Range(-12.0,-8.0);
     	
     	assertEquals("Shift: Did not return the expected output of (-12.0,-8.0)", expectedRange, result);
@@ -119,7 +107,7 @@ public class RangeTest {
     
     @Test public void testShiftBaseRangeWithNegativeDeltaCausingZeroCrossing() {
     	Range baseRange = new Range(5.0, 12.0);
-    	Range result = baseRange.shift(baseRange, -7.0);
+    	Range result = Range.shift(baseRange, -7.0);
     	Range expectedRange = new Range(0.0,5.0);
     	
     	assertEquals("Shift: Did not return the expected output of (0.0, 5.0)", expectedRange, result);
@@ -127,15 +115,15 @@ public class RangeTest {
     
     @Test public void testShiftBaseRangeContainingMaxValueWithPositiveDelta() {
     	Range baseRange = new Range(Double.MAX_VALUE, Double.MAX_VALUE);
-    	Range result = baseRange.shift(baseRange, 100);
-    	Range expectedRange = new Range (Double.MAX_VALUE,Double.MAX_VALUE);
+    	Range result = Range.shift(baseRange, 100);
+    	Range expectedRange = new Range (Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY);
     	assertEquals("Shift: Did not return the expected output of (Double.POSITIVE_INFINITY,Double.POSITIVE_INFINITY)"
     			, expectedRange, result);
     }
     
     @Test public void testShiftBaseRangeContainingMinValueWithNegativeDelta() {
     	Range baseRange = new Range(Double.MIN_VALUE, Double.MIN_VALUE);
-    	Range result = baseRange.shift(baseRange, 100);
+    	Range result = Range.shift(baseRange, 100);
     	Range expectedRange = new Range (Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY);
     	
     	assertEquals("Shift: Did not return the expected output of (Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY)"
@@ -181,7 +169,7 @@ public class RangeTest {
     	assertEquals("Combine: Did not return the expected range of (5, 10)", expectedRange, result);
     }
     
-    @Test public void testCombineRangeEithNull() {
+    @Test public void testCombineRangeWithNull() {
     	Range range1 = new Range(1.0, 10.0);
     	Range result = Range.combine(range1, null);
     	Range expectedRange = new Range(1.0, 10.0);
@@ -231,6 +219,20 @@ public class RangeTest {
     	Range expectedRange = new Range (-1,8);
     	
     	assertEquals("Expand: Did not return the expected range of (-1, 8)", expectedRange, result);
+    }
+    
+    @Test public void testExpandRangeWithDoubleNegativeMarginsCausingEmptyRange() {
+    	try {
+    		Range baseRange = new Range(1,11);
+        	Range result = Range.expand(baseRange, -0.5, -0.5);
+        	Range expectedRange = new Range (6,6);
+        	
+        	assertEquals("Expand: Did not return the expected range of (6, 6)", expectedRange, result);
+    	}
+    	catch(Exception e) {
+    		fail("Expand: Did not return the expected range of (6, 6) Error: " + e.getMessage() );
+    	}
+    	
     }
     
     @Test public void testExpandEmptyRangeWithPositiveAndZeroMargins() {
@@ -333,93 +335,11 @@ public class RangeTest {
 		
 		assertEquals("ExpandToInclude: Did not return the expected range of (5, 10)", expectedRange, result);
 	}
-	/*@Test(expected = InvalidParameterException.class)
-	public void testShift() {
-
-	}
+	//End of Expand tests
 	
-    }
-	@Test
-	public void testCombine() {
-
-	}
-
-	@Test(expected = InvalidParameterException.class)
-	public void testExpand() {
-
-	}
-	
-	@Test
-	public void testExpandToInclude() {
-
-	}*/
 	
 	public void tearDown() throws Exception{	
-	/*	rangeObjectUnderTest = null; 
-		r1 = null;
-		r2 = null; 
-		r3 = null;
-		r4 = null;
-		r5 = null;*/
+	
 	}
 
-	/*
-	private Range rangeObjectUnderTest;
-	private Range r1;
-	private Range r2;
-	private Range r3;
-	private Range r4;
-	private Range r5;
-	
-	@Before
-	public void setUp() throws Exception {
-		rangeObjectUnderTest = new Range(-1,1);
-		
-		r1 = new Range(2,2);
-		r2 = new Range(4,9);
-		r3 = new Range(-99,-99);
-		r4 = new Range(-11,-4);
-		r5 = new Range(-5,3);
-	}
-
-	@Test
-	public void testCentralValueShouldBeZero() {
-		assertEquals("The central value of -1 and 1 should be 0", 
-						0, rangeObjectUnderTest.getCentralValue(), 0.00000001d);
-	}
-	
-	@Test 
-	public void testGetLengthBothPositiveAndEqual() {
-		assertEquals("getLength: Did not return the expected output of 0", 0.0, r1.getLength(), 0.0000001d);
-	}
-	
-	@Test
-	public void testGetLengthBothPositiveAndNotEqual() {
-		assertEquals("getLength: Did not return the expected output of 5", 5.0, r2.getLength(), 0.000001d);
-	}
-	
-	@Test 
-	public void testGetLengthBothNegativeAndEqual() {
-		assertEquals("getLength: Did not return the expected output of 0", 0.0, r3.getLength(), 0.000001d);
-	}
-	
-	@Test
-	public void testGetLengthBothNegativeAndNotEqual() {
-		assertEquals("getLength: Did not return the expected output of 7", 7.0, r4.getLength(), 0.000001d);
-	}
-	
-	@Test
-	public void testGetLengthOnePositiveAndOneNegative() {
-		assertEquals("getLength: Did not return the expected output of 8", 8.0, r5.getLength(), 0.00001d);
-	}
-	
-	public void tearDown() throws Exception{	
-		rangeObjectUnderTest = null; 
-		r1 = null;
-		r2 = null; 
-		r3 = null;
-		r4 = null;
-		r5 = null;
-	}
-	*/
 }
