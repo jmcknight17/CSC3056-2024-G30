@@ -193,7 +193,7 @@ public class RangeTest {
     	Range range1 = new Range(7, Double.MAX_VALUE);
     	Range range2 = new Range(1.0, 8.0);
     	Range result = Range.combine(range1, range2);
-    	Range expectedRange = new Range(1, Double.MAX_VALUE);
+    	Range expectedRange = new Range(1,Double.MAX_VALUE);
     	
     	assertEquals("Combine: Did not return the expected range of (1, Double.MAX_VALUE)", expectedRange, result);
     }
@@ -223,9 +223,116 @@ public class RangeTest {
     }
   //End of combine tests   
     
+  //Start of expand tests 
     
-	//
+    @Test public void testExpandRangeWithPositiveMargins() {
+    	Range baseRange = new Range(2,6);
+    	Range result = Range.expand(baseRange, 0.75, 0.5);
+    	Range expectedRange = new Range (-1,8);
+    	
+    	assertEquals("Expand: Did not return the expected range of (-1, 8)", expectedRange, result);
+    }
+    
+    @Test public void testExpandEmptyRangeWithPositiveAndZeroMargins() {
+    	Range baseRange = new Range(2,2);
+    	Range result = Range.expand(baseRange, 1, 0);
+    	Range expectedRange = new Range (2,2);
+    	
+    	assertEquals("Expand: Did not return the expected range of (2, 2)", expectedRange, result);
+    }
+    
+    @Test public void testExpandRangeWithZeroAndPositiveMargins() {
+    	Range baseRange = new Range(1,5);
+    	Range result = Range.expand(baseRange, 0, 0.75);
+    	Range expectedRange = new Range (1,8);
+    	
+    	assertEquals("Expand: Did not return the expected range of (1, 8)", expectedRange, result);
+    }
+    
+    @Test public void testExpandRangeWithNegativeAndPositiveMargins() {
+    	Range baseRange = new Range(6,10);
+    	Range result = Range.expand(baseRange, -0.25, 1);
+    	Range expectedRange = new Range (7,14);
+    	
+    	assertEquals("Expand: Did not return the expected range of (7, 14)", expectedRange, result);
+    }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testExpandRangeWithNegativeLowerMarginCausingRangeToFlip() {
+    	Range baseRange = new Range(6,10);
+    	Range.expand(baseRange, -1.25, 0);
+    }
+    
+    @Test public void testExpandRangeWithPositiveAndZeroMargins() {
+    	Range baseRange = new Range(10, 20);
+    	Range result = Range.expand(baseRange, 0.5, 0);
+    	Range expectedRange = new Range (5,20);
+    	
+    	assertEquals("Expand: Did not return the expected range of (5, 20)", expectedRange, result);
+    }
+    
+    @Test public void testExpandRangeWithPositiveAndNegativeMargins() {
+    	Range baseRange = new Range(10,20);
+    	Range result = Range.expand(baseRange, 0.8, -0.2);
+    	Range expectedRange = new Range (2,18);
+    	
+    	assertEquals("Expand: Did not return the expected range of (2, 18)", expectedRange, result);
+    }
+    
+    @Test (expected = IllegalArgumentException.class)
+    public void testExpandRangeWithNegativeUpperMarginCausingRangeToFlip() {
+    	Range baseRange = new Range(10,20);
+    	Range.expand(baseRange, 0, -1.2);
+    }
+  //End of expand tests
+    
+  //Start of expandToInclude tests 
+	@Test public void testExpandToIncludeRangeWithValueWithinRange() {
+		Range baseRange = new Range(3, 6);
+		Range result = Range.expandToInclude(baseRange, 5);
+		Range expectedRange = new Range(3, 6);
+		
+		assertEquals("ExpandToInclude: Did not return the expected range of (3, 6)", expectedRange, result);
+	}
 	
+	@Test public void testExpandToIncludeRangeWithValueLeftOfLowerBound() {
+		Range baseRange = new Range(6, 9);
+		Range result = Range.expandToInclude(baseRange, 4);
+		Range expectedRange = new Range(4, 9);
+		
+		assertEquals("ExpandToInclude: Did not return the expected range of (4, 9)", expectedRange, result);
+	}
+	
+	@Test public void testExpandToIncludeRangeWithValueRightOfUpperBound() {
+		Range baseRange = new Range(1, 3);
+		Range result = Range.expandToInclude(baseRange, 5);
+		Range expectedRange = new Range(1, 5);
+		
+		assertEquals("ExpandToInclude: Did not return the expected range of (1, 5)", expectedRange, result);
+	}
+	
+	@Test public void testExpandToIncludeNullRangeWithPositiveValue() {
+		Range result = Range.expandToInclude(null, 8);
+		Range expectedRange = new Range(8, 8);
+		
+		assertEquals("ExpandToInclude: Did not return the expected range of (8, 8)", expectedRange, result);
+	}
+	
+	@Test public void testExpandToIncludeRangeWithValueEqualToLowerBound() {
+		Range baseRange = new Range(5, 10);
+		Range result = Range.expandToInclude(baseRange, 5);
+		Range expectedRange = new Range(5, 10);
+		
+		assertEquals("ExpandToInclude: Did not return the expected range of (5, 10)", expectedRange, result);
+	}
+	
+	@Test public void testExpandToIncludeRangeWithValueEqualToUpperBound() {
+		Range baseRange = new Range(5, 10);
+		Range result = Range.expandToInclude(baseRange, 10);
+		Range expectedRange = new Range(5, 10);
+		
+		assertEquals("ExpandToInclude: Did not return the expected range of (5, 10)", expectedRange, result);
+	}
 	/*@Test(expected = InvalidParameterException.class)
 	public void testShift() {
 
