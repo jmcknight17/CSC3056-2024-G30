@@ -23,21 +23,29 @@ public class DataUtilitiesTest extends DataUtilities {
 	
 	//Start of CalculateColumnTotal Test Cases
 	@Test public void testCalculateColumnTotalNegativeIndex() {
-		DefaultKeyedValues2D data = new DefaultKeyedValues2D();
-		data.addValue(1, 2.7, 3);
-		data.addValue(4, 5, -6);
-		data.addValue(7, 8.4, 9);
-		
-		assertEquals("0 should be returned", 0, DataUtilities.calculateColumnTotal(data, -1), 0.00000001d);
+		try {
+			DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+			data.addValue(1, 2.7, 3);
+			data.addValue(4, 5, -6);
+			data.addValue(7, 8.4, 9);
+			
+			assertEquals("0 should be returned", 0, DataUtilities.calculateColumnTotal(data, -1), 0.00000001d);
+		} catch(Exception e) {
+			fail();
+		}
 	}
 	
 	@Test public void testCalculateColumnTotalInvalidHigherIndex() {
-		DefaultKeyedValues2D data = new DefaultKeyedValues2D();
-		data.addValue(1, 2, 3);
-		data.addValue(4, 5, 6);
-		data.addValue(7, 8, 9);
+		try {
+			DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+			data.addValue(1, 2, 3);
+			data.addValue(4, 5, 6);
+			data.addValue(7, 8, 9);
 
-		assertEquals("0 should be returned", 0, DataUtilities.calculateColumnTotal(data, 4), 0.00000001d);
+			assertEquals("0 should be returned", 0, DataUtilities.calculateColumnTotal(data, 4), 0.00000001d);
+		} catch(Exception e) {
+			fail();
+		}
 	}
 	
 	@Test public void testCalculateColumnTotalValidLowerIndex() {
@@ -98,21 +106,29 @@ public class DataUtilitiesTest extends DataUtilities {
 	
 	//Start of CalculateRowTotal Test Cases
 	@Test public void testCalculateRowTotalNegativeIndex() {
-		DefaultKeyedValues2D data = new DefaultKeyedValues2D();
-		data.addValue(1, 2.7, 3);
-		data.addValue(4, 5, -6);
-		data.addValue(7, 8.4, 9);
-		
-		assertEquals("0 should be returned", 0, DataUtilities.calculateRowTotal(data, -1), 0.00000001d);
+		try {
+			DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+			data.addValue(1, 2.7, 3);
+			data.addValue(4, 5, -6);
+			data.addValue(7, 8.4, 9);
+			
+			assertEquals("0 should be returned", 0, DataUtilities.calculateRowTotal(data, -1), 0.00000001d);
+		}catch (Exception e) {
+			fail();
+		}
 	}
 	
 	@Test public void testCalculateRowTotalInvalidHigherIndex() {
-		DefaultKeyedValues2D data = new DefaultKeyedValues2D();
-		data.addValue(1, 2, 3);
-		data.addValue(4, 5, 6);
-		data.addValue(7, 8, 9);
-		
-		assertEquals("0 should be returned", 0, DataUtilities.calculateRowTotal(data, 4), 0.00000001d);
+		try {
+			DefaultKeyedValues2D data = new DefaultKeyedValues2D();
+			data.addValue(1, 2, 3);
+			data.addValue(4, 5, 6);
+			data.addValue(7, 8, 9);
+			
+			assertEquals("0 should be returned", 0, DataUtilities.calculateRowTotal(data, 4), 0.00000001d);
+		} catch(Exception e) {
+			fail();
+		}
 	}
 	
 	@Test public void testCalculateRowTotalValidLowerIndex() {
