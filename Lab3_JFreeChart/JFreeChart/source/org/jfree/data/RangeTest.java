@@ -113,6 +113,14 @@ public class RangeTest {
     	assertEquals("Shift: Did not return the expected output of (0.0, 5.0)", expectedRange, result);
     }
     
+    @Test public void testShiftLowerBoundaryZeroZeroCrossingFalse() {
+    	Range baseRange = new Range(0.0, 3.0);
+    	Range result = Range.shift(baseRange, 1);
+    	Range expectedRange = new Range(1.0, 4.0);
+    	
+    	assertEquals("Shift: Did not return the expected output of (1.0, 4.0)", expectedRange, result);
+    }
+    
     @Test public void testShiftBaseRangeContainingMaxValueWithPositiveDelta() {
     	Range baseRange = new Range(Double.MAX_VALUE, Double.MAX_VALUE);
     	Range result = Range.shift(baseRange, 100);
@@ -125,6 +133,15 @@ public class RangeTest {
     	Range baseRange = new Range(Double.MIN_VALUE, Double.MIN_VALUE);
     	Range result = Range.shift(baseRange, 100);
     	Range expectedRange = new Range (Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY);
+    	
+    	assertEquals("Shift: Did not return the expected output of (Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY)"
+    			, expectedRange, result);
+    }
+    
+    @Test public void testShiftAllowZeroCrossingWithNegativeDelta() {
+    	Range baseRange = new Range(1,10);
+    	Range result = Range.shift(baseRange, -3, true);
+    	Range expectedRange = new Range (-2, 7);
     	
     	assertEquals("Shift: Did not return the expected output of (Double.NEGATIVE_INFINITY,Double.NEGATIVE_INFINITY)"
     			, expectedRange, result);
@@ -289,6 +306,10 @@ public class RangeTest {
     	Range.expand(baseRange, 0, -1.2);
     }
     
+    @Test (expected = IllegalArgumentException.class)
+    public void testExpandRangeWithNullRange() {
+    	Range.expand(null, 0, 0);
+    }
   //End of expand tests
     
   //Start of Constrain tests
