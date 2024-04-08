@@ -281,12 +281,67 @@ public class RangeTest {
     	assertEquals("Expand: Did not return the expected range of (2, 18)", expectedRange, result);
     }
     
+    
+    
     @Test (expected = IllegalArgumentException.class)
     public void testExpandRangeWithNegativeUpperMarginCausingRangeToFlip() {
     	Range baseRange = new Range(10,20);
     	Range.expand(baseRange, 0, -1.2);
     }
+    
   //End of expand tests
+    
+  //Start of Constrain tests
+    @Test public void testConstrainWithValueOutOfRange() {
+		Range baseRange = new Range(1, 10);
+		double result = baseRange.constrain(11.5);
+		double expectedDouble = 11.5;
+		
+		assertEquals("ExpandToInclude: Did not return the expected range of (3, 6)", expectedDouble, result,0.0001d);
+	}
+	
+    @Test public void testConstrainWithValueOutOfRange2() {
+		Range baseRange = new Range(1, 10);
+		double result = baseRange.constrain(1.1);
+		double expectedDouble = 1;
+		
+		assertEquals("ExpandToInclude: Did not return the expected range of (3, 6)", expectedDouble, result,0.0001d);
+	}
+	
+    @Test public void testConstrainWithValueOutOfRange3() {
+		Range baseRange = new Range(1, 10);
+		double result = baseRange.constrain(5.5);
+		double expectedDouble = 6;
+		
+		assertEquals("ExpandToInclude: Did not return the expected range of (3, 6)", expectedDouble, result,0.0001d);
+	}
+    
+    @Test public void testConstrainWithValueOutOfRange4() {
+ 		Range baseRange = new Range(1, 10);
+ 		double result = baseRange.constrain(0.0);
+ 		double expectedDouble = 0;
+ 		
+ 		assertEquals("ExpandToInclude: Did not return the expected range of (3, 6)", expectedDouble, result,0.0001d);
+ 	}
+    @Test public void testConstrainWithValueOutOfRange5() {
+ 		Range baseRange = new Range(1, 10);
+ 		double result = baseRange.constrain(11.0);
+ 		double expectedDouble = 7.0;
+ 		
+ 		assertEquals("ExpandToInclude: Did not return the expected range of (3, 6)", expectedDouble, result,0.0001d);
+ 	}
+	
+  //End of Constrain tests
+    
+  //Start of getCentreValue tests
+    @Test public void testGetCentralValueWithValidRange() {
+    	Range baseRange = new Range(0, 10);
+    	double result = baseRange.getCentralValue();
+    	double expectedResult = 5.0;
+    	
+    	assertEquals("GetCentralValue: Did not return the expected central value of 5", expectedResult,result, 0.0001d);
+    }
+  //End of getCentreValue tests
     
   //Start of expandToInclude tests 
 	@Test public void testExpandToIncludeRangeWithValueWithinRange() {

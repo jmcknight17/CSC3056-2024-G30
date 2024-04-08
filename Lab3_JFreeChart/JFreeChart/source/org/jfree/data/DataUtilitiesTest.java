@@ -368,6 +368,16 @@ public class DataUtilitiesTest extends DataUtilities {
 	    		expected, DataUtilities.getCumulativePercentages(data));
 	}
 	
+	@Test public void testGetCumulativePercentagesDataContainingNull() {
+		DefaultKeyedValues data = new DefaultKeyedValues();
+        data.addValue("1", 100);
+        data.addValue("2", null);
+        DefaultKeyedValues expected = new DefaultKeyedValues();
+        
+	    assertEquals("KeyedValues instance of {} should be returned"
+	    		, expected, DataUtilities.getCumulativePercentages(data));
+	}
+	
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetCumulativePercentagesNullData() {
 		DataUtilities.getCumulativePercentages(null);

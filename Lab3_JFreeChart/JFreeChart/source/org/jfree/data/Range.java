@@ -266,7 +266,7 @@ public strictfp class Range implements Serializable {
      * (to the right) by the delta value. Is equivalent to shift(base, delta, false)
      * (does not allow zero crossing).
      * 
-     * @param base  the base range.
+     * @param ba2se  the base range.
      * @param delta  the amount to shift right by.
      * 
      * @return A range representing the base range shifted right by delta.
